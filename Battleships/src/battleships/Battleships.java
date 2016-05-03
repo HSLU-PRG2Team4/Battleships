@@ -5,6 +5,8 @@
  */
 package battleships;
 
+import java.awt.EventQueue;
+
 /**
  *
  * @author Lucas
@@ -16,6 +18,8 @@ public class Battleships {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        // TODO code application logic here
+        EventQueue.invokeLater(() -> new GameGUI());
     }
     
 }
