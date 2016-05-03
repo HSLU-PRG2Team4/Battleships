@@ -16,6 +16,7 @@ public class Battleships {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //füdlä i hag ine
     }
     
 }
