@@ -7,7 +7,7 @@ package battleships;
 
 /**
  *
- * @author Lucas
+ * @author Lucas und Rafael
  */
 public class Battleships {
 
