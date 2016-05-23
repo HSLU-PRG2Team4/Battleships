@@ -11,9 +11,10 @@ package battleships;
  */
 public class GameView {
     private GameControl gameControl;
-    
+    private ConnectionGUI StartWindow;
     
     public GameView(GameControl gameControl) {
         this.gameControl = gameControl;
+        this.StartWindow = new ConnectionGUI();
     }
 }
