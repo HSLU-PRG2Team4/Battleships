@@ -10,7 +10,9 @@ import java.awt.Button;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -25,9 +27,6 @@ import javax.swing.WindowConstants;
  * @author Damian
  */
 public class GameGUI extends JFrame{
-    
-    private JLabel lStatus = new JLabel("Status");
-    private JPanel pane = new JPanel();
 
     public GameGUI() throws HeadlessException {
         
@@ -36,33 +35,19 @@ public class GameGUI extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000,500);
         setResizable(false);
-               
-        GridLayout GUILayout = new GridLayout(0,3);
-        
-        final JPanel player = new JPanel();
-        player.setLayout(GUILayout);
-
-        player.setLayout(new GridLayout(2,3));
-        
-        for(int i=1;i<=36;i++){
-            player.add(new Button(""+i));
-        }
-        
-        add(lStatus);
-        
-        
-        pane.add(player, BorderLayout.NORTH);
-        pane.add(new JSeparator(), BorderLayout.CENTER);
-        pane.add(player, BorderLayout.SOUTH);
-        
         setVisible(true);
         
-        //
-        /*mExit.addActionListener((ActionEvent e) -> {
-            System.exit(0);
-        });*/
+        setLayout(new BorderLayout());
+        GridLayout PlayerGrid = new GridLayout(6,6);
         
+        JLabel lStatus = new JLabel("Status");
         
+        add(new Button("East"), BorderLayout.EAST);
+        add(new Button("West"), BorderLayout.WEST);
+        add(new Label("Center"), BorderLayout.CENTER);
+        add(lStatus, BorderLayout.SOUTH);
+        //add(new JSeparator(), BorderLayout.CENTER);
+   
     }
     
     
@@ -70,7 +55,7 @@ public class GameGUI extends JFrame{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        EventQueue.invokeLater(() -> new GameGUI());
     }
     
 }
