@@ -9,6 +9,21 @@ package battleships;
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public class Grid {
+public abstract class Grid {
+
+    private GridField[][] fields;
+
+    public Grid(int width, int height) {
+        fields = new GridField[height][width];
+    }
     
+    /**
+     * Get the value of fields
+     *
+     * @return the value of fields
+     */
+    public GridField[][] getFields() {
+        return fields;
+    }
+
 }

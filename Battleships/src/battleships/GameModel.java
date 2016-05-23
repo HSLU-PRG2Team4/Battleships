@@ -15,8 +15,8 @@ public class GameModel {
     private OpponentGrid opponentGrid;
 
     public GameModel() {
-        this.ownGrid = new OwnGrid();
-        this.opponentGrid = new OpponentGrid();
+        this.ownGrid = new OwnGrid(6, 6);
+        this.opponentGrid = new OpponentGrid(6, 6);
     }
     
     /**

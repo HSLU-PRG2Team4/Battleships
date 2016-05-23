@@ -9,6 +9,10 @@ package battleships;
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public class OwnGrid {
+public class OwnGrid extends Grid {
+    
+    public OwnGrid(int width, int height) {
+        super(width, height);
+    }
     
 }
