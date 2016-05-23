@@ -5,37 +5,47 @@
  */
 package battleships;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  *
  * @author Rafael
  */
 public class ConnectionGUI extends JFrame implements ActionListener {
+
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem menuItem;
-    
+    private boolean isServer;
+    private ServerSocket serverSocket = null;
+    private Socket clientSocket = null;
+
     public ConnectionGUI() {
         initUI();
-        createMenu();
+        this.setJMenuBar(createMenu());
+        setVisible(true);
+        createServerSocket();
     }
 
     public JMenuBar createMenu() {
         // Create MenuBar and Menu
         menuBar = new JMenuBar();;
-        menu = new JMenu("Connection");        
+        menu = new JMenu("Game");
         menuBar.add(menu);
 
         // Add Menu Item to Menu
-        menuItem = new JMenuItem("Join Game");
+        menuItem = new JMenuItem("Join existing game");
         menuItem.addActionListener(this);
         menu.add(menuItem);
 
@@ -43,15 +53,55 @@ public class ConnectionGUI extends JFrame implements ActionListener {
     }
 
     private void initUI() {
-        setTitle("Waiting for Connection");
-        setSize(300, 200);
+        setTitle("Battleship - Initialize Connection");
+        setSize(600, 120);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container content = getContentPane();
+
+        JLabel waitingLabel = new JLabel("Waiting for Connection...");
+        content.add(waitingLabel);
+
+        // Set Border for progress bar
+        Border border = BorderFactory.createTitledBorder("");
+        waitingLabel.setBorder(border);
+        content.add(waitingLabel, BorderLayout.CENTER);
+    }
+
+    public void createServerSocket() {
+        try {
+            // Create new Server Socket
+            isServer = true;
+            // Open Server Socket
+            serverSocket = new ServerSocket(4444);
+            clientSocket = serverSocket.accept();
+            JOptionPane.showMessageDialog(null, "Verbinung zu Client hergestellt");
+        } catch (IOException ex) {
+            Logger.getLogger(ConnectionGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void createClientSocket() {
+        try {
+            //Dialog für Verbindungsauswahl mit Server
+            JFrame frame = new JFrame();
+            frame = new JFrame("IP-Adresse des Servers");
+            String ip = JOptionPane.showInputDialog(frame, "IP-Adresse des Servers");
+
+            serverSocket = null;
+            clientSocket = null;
+
+            //Aufruf Connection
+            clientSocket = new Socket(ip, 4444);
+            JOptionPane.showMessageDialog(null, "Verbindung zu Host hergestellt");
+        } catch (IOException ex) {
+            Logger.getLogger(ConnectionGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == menuItem){
-            
+        if (e.getSource() == menuItem) {
+            createClientSocket();
         }
     }
 
@@ -62,7 +112,6 @@ public class ConnectionGUI extends JFrame implements ActionListener {
             @Override
             public void run() {
                 ConnectionGUI ex = new ConnectionGUI();
-                ex.setVisible(true);
             }
         });
     }
