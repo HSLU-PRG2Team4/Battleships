@@ -26,8 +26,8 @@ public class GameControl {
         
     }
     
-    public void newGame(String IP){
-        connection = new Opponent(IP);    
+   // public void newGame(String IP){
+   //     connection = new Opponent(IP);    
         
-    }    
+   // }    
 }
