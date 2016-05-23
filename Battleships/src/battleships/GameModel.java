@@ -11,4 +11,48 @@ package battleships;
  */
 public class GameModel {
     
+    private OwnGrid ownGrid;
+    private OpponentGrid opponentGrid;
+
+    public GameModel() {
+        this.ownGrid = new OwnGrid(6, 6);
+        this.opponentGrid = new OpponentGrid(6, 6);
+    }
+    
+    /**
+     * Get the value of ownGrid
+     *
+     * @return the value of ownGrid
+     */
+    public OwnGrid getOwnGrid() {
+        return ownGrid;
+    }
+
+    /**
+     * Set the value of ownGrid
+     *
+     * @param ownGrid new value of ownGrid
+     */
+    public void setOwnGrid(OwnGrid ownGrid) {
+        this.ownGrid = ownGrid;
+    }
+
+    /**
+     * Get the value of opponentGrid
+     *
+     * @return the value of opponentGrid
+     */
+    public OpponentGrid getOpponentGrid() {
+        return opponentGrid;
+    }
+
+    /**
+     * Set the value of opponentGrid
+     *
+     * @param opponentGrid new value of opponentGrid
+     */
+    public void setOpponentGrid(OpponentGrid opponentGrid) {
+        this.opponentGrid = opponentGrid;
+    }
+
 }
