@@ -5,13 +5,15 @@
  */
 package battleships;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public abstract class Grid {
+public abstract class Grid implements Serializable {
 
-    private GridField[][] fields;
+    private final GridField[][] fields;
 
     public Grid(int width, int height) {
         fields = new GridField[height][width];

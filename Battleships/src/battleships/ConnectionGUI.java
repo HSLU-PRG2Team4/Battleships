@@ -30,12 +30,16 @@ public class ConnectionGUI extends JFrame implements ActionListener {
     private boolean isServer;
     private ServerSocket serverSocket = null;
     private Socket clientSocket = null;
+    private GameServer server = null;
+    private GameClient client = null;
 
     public ConnectionGUI() {
         initUI();
         this.setJMenuBar(createMenu());
         setVisible(true);
-        createServerSocket();
+        
+        GameServer server = new GameServer(4444);
+        new Thread(server).start();
     }
 
     public JMenuBar createMenu() {
@@ -67,43 +71,17 @@ public class ConnectionGUI extends JFrame implements ActionListener {
         waitingLabel.setBorder(border);
         content.add(waitingLabel, BorderLayout.CENTER);
     }
-
-    public void createServerSocket() {
-        try {
-            // Create new Server Socket
-            isServer = true;
-            // Open Server Socket
-            serverSocket = new ServerSocket(4444);
-            clientSocket = serverSocket.accept();
-            JOptionPane.showMessageDialog(null, "Verbinung zu Client hergestellt");
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void createClientSocket() {
-        try {
-            //Dialog für Verbindungsauswahl mit Server
+    
+    public void connectToServer() {      
             JFrame frame = new JFrame();
             frame = new JFrame("IP-Adresse des Servers");
             String ip = JOptionPane.showInputDialog(frame, "IP-Adresse des Servers");
-
-            serverSocket = null;
-            clientSocket = null;
-            isServer = false;
-
-            //Aufruf Connection
-            clientSocket = new Socket(ip, 4444);
-            JOptionPane.showMessageDialog(null, "Verbindung zu Host hergestellt");
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            client = new GameClient(ip, 4444);
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuItem) {
-            createClientSocket();
+            connectToServer();
         }
     }
 

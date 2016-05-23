@@ -5,14 +5,16 @@
  */
 package battleships;
 
+import java.net.Socket;
+
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
 public class Opponent {
-    private String opponentIP;
+    private Socket clientSocket;
     
-    public Opponent(String IP){
-        this.opponentIP = IP;
+    public Opponent(Socket clientSocket){
+        this.clientSocket = clientSocket;
     }
 }
