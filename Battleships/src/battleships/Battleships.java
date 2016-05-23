@@ -5,6 +5,8 @@
  */
 package battleships;
 
+import java.awt.EventQueue;
+
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
