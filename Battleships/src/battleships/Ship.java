@@ -10,5 +10,45 @@ package battleships;
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
 public class Ship {
-    
+
+    private int health;
+    private String name;
+
+   /**
+     * Get the value of health
+     *
+     * @return the value of health
+     */
+    public int getHealth() {
+        return health;
+    }
+
+    /**
+     * Set the value of health
+     *
+     * @param health new value of health
+     */
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    /**
+     * Get the value of name
+     *
+     * @return the value of name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @param name new value of name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+     
 }
