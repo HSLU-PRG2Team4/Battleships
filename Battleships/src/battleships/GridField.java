@@ -5,11 +5,13 @@
  */
 package battleships;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public class GridField {
+public class GridField implements Serializable {
 
     private Ship ship;
     private boolean shot;

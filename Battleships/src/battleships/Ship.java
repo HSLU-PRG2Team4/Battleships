@@ -5,11 +5,13 @@
  */
 package battleships;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public class Ship {
+public class Ship implements Serializable {
 
     private int health;
     private String name;
