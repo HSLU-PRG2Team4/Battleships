@@ -40,7 +40,7 @@ public class ConnectionGUI extends JFrame implements ActionListener {
 
     public JMenuBar createMenu() {
         // Create MenuBar and Menu
-        menuBar = new JMenuBar();;
+        menuBar = new JMenuBar();
         menu = new JMenu("Game");
         menuBar.add(menu);
 
@@ -90,10 +90,12 @@ public class ConnectionGUI extends JFrame implements ActionListener {
 
             serverSocket = null;
             clientSocket = null;
+            isServer = false;
 
             //Aufruf Connection
             clientSocket = new Socket(ip, 4444);
             JOptionPane.showMessageDialog(null, "Verbindung zu Host hergestellt");
+            
         } catch (IOException ex) {
             Logger.getLogger(ConnectionGUI.class.getName()).log(Level.SEVERE, null, ex);
         }

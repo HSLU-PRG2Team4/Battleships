@@ -9,8 +9,10 @@ package battleships;
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public class Battleships {
-
-        /* BRAUCHEN WIR DIESE KLASSE??? */
+public class Opponent {
+    private String opponentIP;
     
+    public Opponent(String IP){
+        this.opponentIP = IP;
+    }
 }
