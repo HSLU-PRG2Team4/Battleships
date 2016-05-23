@@ -26,28 +26,8 @@ public class GameControl {
         
     }
     
-    public void newGame(String IP){
-        connection = new Opponent(IP);    
-        gameView.setPlayWindow();
-    }    
-    
-    /**
-     * Take a Opponent-Shot to OwnGrid
-     */
-    public void opponentShot(int xCoord, int yCoord){
-        boolean hit = gameModel.getOwnGrid().getField(xCoord, yCoord).shot();
-
-        if(hit){ /* true if field has ship */
-               /* is Ship health zero? */
-        }
-    }
-    
-    /**
-     *  Shot a Field in OpponentGrid
-     */
-    public void ownShot(){
+   // public void newGame(String IP){
+   //     connection = new Opponent(IP);    
         
-        
-        /* send to Opponent */
-    }
+   // }    
 }
