@@ -22,13 +22,12 @@ public class GameControl {
     
     public void init(){
         gameModel = new GameModel();
-        gameView = new GameView();
+        gameView = new GameView(this);
         
     }
     
     public void newGame(String IP){
-        connection = new Opponent(IP);
-    
-    }
-    
+        connection = new Opponent(IP);    
+        
+    }    
 }
