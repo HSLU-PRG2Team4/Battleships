@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public abstract class Grid implements Serializable {
 
-    private GridField[][] fields;
+    private final GridField[][] fields;
 
     public Grid(int width, int height) {
         fields = new GridField[height][width];
