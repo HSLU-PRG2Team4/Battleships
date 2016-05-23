@@ -13,10 +13,15 @@ public class GameControl {
     private GameModel gameModel;
     private GameView gameView;
     
-    
-    
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
+        gameControl.init(); 
         
     }
+    
+    public void init(){
+        gameModel = new GameModel();
+        gameView = new GameView();
+    }
+    
 }
