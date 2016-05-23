@@ -38,15 +38,33 @@ public class GameGUI extends JFrame{
         setVisible(true);
         
         setLayout(new BorderLayout());
-        GridLayout PlayerGrid = new GridLayout(6,6);
         
-        JLabel lStatus = new JLabel("Status");
+        GridLayout grdPlayer = new GridLayout(6,6);
         
-        add(new Button("East"), BorderLayout.EAST);
-        add(new Button("West"), BorderLayout.WEST);
-        add(new Label("Center"), BorderLayout.CENTER);
-        add(lStatus, BorderLayout.SOUTH);
-        //add(new JSeparator(), BorderLayout.CENTER);
+        JLabel lblStatus = new JLabel("Status");
+        JPanel pnlPlayerOne = new JPanel();
+        JPanel pnlPlayerTwo = new JPanel();
+        
+        add(pnlPlayerOne, BorderLayout.WEST);
+        
+        for(int i=1;i<=36;i++)
+        {
+            pnlPlayerOne.add(new JButton(""+i));
+        }
+        
+        for(int j=1;j<=36;j++)
+        {
+            pnlPlayerTwo.add(new JButton(""+j));
+        }
+        
+        pnlPlayerOne.setLayout(grdPlayer);
+        pnlPlayerTwo.setLayout(grdPlayer);
+        
+        //add(new JLabel("Center"), BorderLayout.CENTER);
+        
+        add(pnlPlayerOne, BorderLayout.WEST);
+        add(pnlPlayerTwo, BorderLayout.EAST);
+        add(lblStatus, BorderLayout.SOUTH);
    
     }
     
