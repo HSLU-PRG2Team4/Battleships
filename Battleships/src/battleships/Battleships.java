@@ -11,12 +11,6 @@ package battleships;
  */
 public class Battleships {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        //füdlä i hag ine
-    }
+        /* BRAUCHEN WIR DIESE KLASSE??? */
     
 }
