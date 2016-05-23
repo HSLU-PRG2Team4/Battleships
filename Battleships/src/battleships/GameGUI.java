@@ -33,7 +33,7 @@ public class GameGUI extends JFrame{
         super("Battleships");
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(1000,500);
+        setSize(750,500);
         setResizable(false);
         setVisible(true);
         
@@ -60,12 +60,14 @@ public class GameGUI extends JFrame{
         pnlPlayerOne.setLayout(grdPlayer);
         pnlPlayerTwo.setLayout(grdPlayer);
         
-        //add(new JLabel("Center"), BorderLayout.CENTER);
-        
         add(pnlPlayerOne, BorderLayout.WEST);
         add(pnlPlayerTwo, BorderLayout.EAST);
         add(lblStatus, BorderLayout.SOUTH);
    
+    }
+    
+    public static void main(final String[]args){
+        EventQueue.invokeLater(() -> new GameGUI());
     }
     
 }
