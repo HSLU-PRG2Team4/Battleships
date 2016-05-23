@@ -10,5 +10,9 @@ package battleships;
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
 public class Opponent {
+    private String opponentIP;
     
+    public Opponent(String IP){
+        this.opponentIP = IP;
+    }
 }
