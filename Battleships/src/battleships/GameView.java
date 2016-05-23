@@ -11,10 +11,17 @@ package battleships;
  */
 public class GameView {
     private GameControl gameControl;
-    private ConnectionGUI StartWindow;
+    private ConnectionGUI startWindow;
+    private GameGUI playWindow;
     
     public GameView(GameControl gameControl) {
         this.gameControl = gameControl;
-        this.StartWindow = new ConnectionGUI();
+        this.startWindow = new ConnectionGUI();
     }
+    
+    public void setPlayWindow(){
+        this.playWindow = new GameGUI();
+    }
+    
+    
 }
