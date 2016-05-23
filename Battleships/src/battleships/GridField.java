@@ -48,7 +48,7 @@ public class GridField {
     /**
      * Set the value of shot
      *
-     * @param isShot new value of shot
+     * @param shot new value of shot
      */
     public void setShot(boolean shot) {
         this.shot = shot;
