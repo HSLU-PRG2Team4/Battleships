@@ -50,5 +50,15 @@ public class Ship {
         this.name = name;
     }
 
+    /**
+     * Execute a hit, decrease health and return new health
+     * @return int of new health
+     */
+    public int hit() {
+        if(this.health > 0) {
+            this.health -= 1;            
+        }
+        return this.health;
+    }
      
 }
