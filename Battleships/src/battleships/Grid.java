@@ -25,5 +25,14 @@ public abstract class Grid {
     public GridField[][] getFields() {
         return fields;
     }
-
+    
+    /**
+     * Get a Field specified by its x and y coordinates
+     * @param xCoord
+     * @param yCoord
+     * @return Field at specified position
+     */
+    public GridField getField(int xCoord, int yCoord) {
+        return fields[xCoord][yCoord];
+    }
 }
