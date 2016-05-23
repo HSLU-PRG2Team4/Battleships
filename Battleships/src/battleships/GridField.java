@@ -9,6 +9,6 @@ package battleships;
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public class Field {
+public class GridField {
     
 }
