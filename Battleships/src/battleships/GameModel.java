@@ -13,10 +13,16 @@ public class GameModel {
     
     private OwnGrid ownGrid;
     private OpponentGrid opponentGrid;
+    private final Ship[] ownShips;
 
     public GameModel() {
         this.ownGrid = new OwnGrid(6, 6);
         this.opponentGrid = new OpponentGrid(6, 6);
+        
+        this.ownShips = new Ship[3];
+        this.ownShips[0] = new Ship(1, "Gumelboot");
+        this.ownShips[1] = new Ship(2, "Zerstörer");
+        this.ownShips[2] = new Ship(3, "Kreuzer");
     }
     
     /**

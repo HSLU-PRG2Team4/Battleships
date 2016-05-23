@@ -20,7 +20,7 @@ public class GameServer implements Runnable {
 
     private Socket clientSocket = null;
     private ServerSocket serverSocket = null;
-    private Thread runningThread = null;
+    private Thread runningThread = null;    
     private boolean isStopped = false;
     private final int serverPort;
 
