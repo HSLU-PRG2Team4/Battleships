@@ -12,4 +12,8 @@ package battleships;
 public class GameView {
     private GameControl gameControl;
     
+    
+    public GameView(GameControl gameControl) {
+        this.gameControl = gameControl;
+    }
 }
