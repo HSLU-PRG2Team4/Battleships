@@ -32,7 +32,7 @@ public class GameClient {
         } catch (IOException ex) {
             Logger.getLogger(GameClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Verbindung zu Host hergestellt. Game wird gestartet.");
+        JOptionPane.showMessageDialog(null, "Verbindung zu Server hergestellt. Game wird gestartet.");
 
         // Erstelle neues Opponent Objekt
         new Opponent(this.clientSocket);

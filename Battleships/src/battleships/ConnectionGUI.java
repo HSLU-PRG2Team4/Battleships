@@ -37,7 +37,9 @@ public class ConnectionGUI extends JFrame implements ActionListener {
         initUI();
         this.setJMenuBar(createMenu());
         setVisible(true);
-        server = new GameServer(4444);
+        
+        GameServer server = new GameServer(4444);
+        new Thread(server).start();
     }
 
     public JMenuBar createMenu() {

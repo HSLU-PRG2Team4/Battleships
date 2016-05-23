@@ -22,42 +22,34 @@ public class GameServer implements Runnable {
     private ServerSocket serverSocket = null;
     private Thread runningThread = null;    
     private boolean isStopped = false;
-    private final int port;
+    private final int serverPort;
 
-    public GameServer(int port) {
-        this.port = port;
+    public GameServer(int serverPort) {
+        this.serverPort = serverPort;
     }
 
     public void run() {
         synchronized (this) {
             this.runningThread = Thread.currentThread();
         }
-
-        try {
-            // Open Server Socket
-            this.serverSocket = new ServerSocket(this.port);
-
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        openServerSocket();
 
         while (!isStopped()) {
+            clientSocket = null;
             try {
                 this.clientSocket = this.serverSocket.accept();
-
-                // Erstelle neues Opponent Objekt
-                new Opponent(this.clientSocket);
-
+                JOptionPane.showMessageDialog(null, "Verbindung zu Client hergestellt. Game wird gestartet.");
             } catch (IOException e) {
                 if (isStopped()) {
-                    System.out.println("Server stopped.");
+                    JOptionPane.showMessageDialog(null, "Server gestoppt.");
                     return;
                 }
                 throw new RuntimeException(
                         "Error accepting client connection", e);
-            }
+            }           
         }
-        System.out.println("Server Stopped.");
+
+        JOptionPane.showMessageDialog(null, "Server gestoppt.");
     }
 
     private synchronized boolean isStopped() {
@@ -70,6 +62,14 @@ public class GameServer implements Runnable {
             this.serverSocket.close();
         } catch (IOException e) {
             throw new RuntimeException("Error closing server", e);
+        }
+    }
+
+    private void openServerSocket() {
+        try {
+            this.serverSocket = new ServerSocket(this.serverPort);
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot open port", e);
         }
     }
 }
