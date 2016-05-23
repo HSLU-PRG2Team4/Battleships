@@ -5,14 +5,14 @@
  */
 package battleships;
 
-import java.awt.EventQueue;
-
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
-public class Battleships {
-
-        /* BRAUCHEN WIR DIESE KLASSE??? */
+public class OwnGrid extends Grid {
+    
+    public OwnGrid(int width, int height) {
+        super(width, height);
+    }
     
 }
