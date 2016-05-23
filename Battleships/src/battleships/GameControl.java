@@ -10,5 +10,13 @@ package battleships;
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
 public class GameControl {
+    private GameModel gameModel;
+    private GameView gameView;
     
+    
+    
+    public static void main(String args[]){
+        GameControl gameControl = new GameControl();
+        
+    }
 }
