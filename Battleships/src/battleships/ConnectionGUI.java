@@ -6,12 +6,8 @@
 package battleships;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.ServerSocket;
-import java.net.Socket;
 import javax.swing.*;
 
 /**
@@ -63,7 +59,7 @@ public class ConnectionGUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.buttonServer) {
-            gameView.getGameControl().waitingForConnection();
+            gameView.getGameControl().waitForConnection();
         } else if (e.getSource() == this.buttonClient) {
             JFrame frame = new JFrame("IP-Adresse des Servers");
             String ip = JOptionPane.showInputDialog(frame, "IP-Adresse des Servers");
