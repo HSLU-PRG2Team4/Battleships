@@ -28,15 +28,14 @@ public class GameControl {
     }
     
     
-    /* when player A waits for invitation */
-    public void waitForConnection(){
+    /* when player A waits for invitation (called by ConnectionGUI) */
+    public void waitForConnection(String ip){
         opponent.getGameHost().connect(ip);
     }
     
     
-    /* when Player A sends invitation to player B */
-    public void requestConnection(String ip){
+    /* when Player A sends invitation to player B (called by ConnectionGUI) */
+    public void requestConnection(){
         opponent.getGameHost().waiting();
     }
-
 }
