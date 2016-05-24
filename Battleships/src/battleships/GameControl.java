@@ -12,7 +12,7 @@ package battleships;
 public class GameControl {
     private GameModel gameModel;
     private GameView gameView;
-    private Opponent connection;
+    private Opponent opponent;
     
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
@@ -23,11 +23,20 @@ public class GameControl {
     public void init(){
         gameModel = new GameModel();
         gameView = new GameView(this);
+        opponent = new Opponent(this);
         
     }
     
-   // public void newGame(String IP){
-   //     connection = new Opponent(IP);    
-        
-   // }    
+    
+    /* when player A waits for invitation */
+    public void waitForConnection(){
+        opponent.getGameHost().connect(ip);
+    }
+    
+    
+    /* when Player A sends invitation to player B */
+    public void requestConnection(String ip){
+        opponent.getGameHost().waiting();
+    }
+
 }
