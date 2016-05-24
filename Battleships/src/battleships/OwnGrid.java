@@ -16,6 +16,7 @@ public class OwnGrid extends Grid {
     }
     
     public boolean addShip(Ship ship, int xCoord, int yCoord) {
-        return this.getField(xCoord, yCoord).setShip(ship);
+return false;      
+//  return this.getField(xCoord, yCoord).setShip(ship);
     }
 }

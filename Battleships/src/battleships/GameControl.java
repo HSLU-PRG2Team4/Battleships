@@ -19,7 +19,7 @@ public class GameControl {
         gameControl.init();  /* connectionGUI waits until connection is made */
                 
         /* temporary TEST */
-        gameControl.requestShot();
+        gameControl.shot(5,6);
         
         
         gameControl.newGame();
