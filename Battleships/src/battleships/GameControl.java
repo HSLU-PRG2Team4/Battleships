@@ -13,6 +13,7 @@ public class GameControl {
     private GameModel gameModel;
     private GameView gameView;
     private GameHost gameHost;
+    private boolean PolePosition = false;
     
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
@@ -33,6 +34,10 @@ public class GameControl {
         gameView = new GameView(this);
         gameHost = new GameHost(this);
     }
+    
+    public void setPolePosition(boolean pole){
+        this.PolePosition = pole;
+    };
     
     /* when player A waits for invitation (called by ConnectionGUI) */
     public void waitForConnection(){
