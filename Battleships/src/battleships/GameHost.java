@@ -32,10 +32,10 @@ public class GameHost {
 
     public void waiting() {
         try {
-            serverSocket = new ServerSocket(4444);
-            clientSocket = serverSocket.accept();
-            out = new ObjectOutputStream(clientSocket.getOutputStream());
-             in = new ObjectInputStream(clientSocket.getInputStream());
+            this.serverSocket = new ServerSocket(4444);
+            this.clientSocket = serverSocket.accept();
+            this.out = new ObjectOutputStream(clientSocket.getOutputStream());
+            this.in = new ObjectInputStream(clientSocket.getInputStream());
             JOptionPane.showMessageDialog(null, "Verbindung zu Client hergestellt. Game wird gestartet.");
         } catch (IOException e) {
             throw new RuntimeException(
@@ -45,9 +45,9 @@ public class GameHost {
 
     public void connect(String ip) {
         try {
-            clientSocket = new Socket(ip, 4444);
-             out = new ObjectOutputStream(clientSocket.getOutputStream());
-             in = new ObjectInputStream(clientSocket.getInputStream());
+            this.clientSocket = new Socket(ip, 4444);
+            this.out = new ObjectOutputStream(clientSocket.getOutputStream());
+            this.in = new ObjectInputStream(clientSocket.getInputStream());
             JOptionPane.showMessageDialog(null, "Verbindung zu Server hergestellt. Game wird gestartet.");
         } catch (IOException e) {
             throw new RuntimeException(
@@ -74,8 +74,7 @@ public class GameHost {
     public String receiveShot() {
         String coordinates = "";
         try {
-            in = new ObjectInputStream(clientSocket.getInputStream());
-            coordinates = (String) in.readObject();
+            coordinates = (String) this.in.readObject();
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(GameHost.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,12 +85,10 @@ public class GameHost {
     public Grid receiveGrid() {
         Grid opponentGrid = null;
         try {
-            in = new ObjectInputStream(clientSocket.getInputStream());
-            opponentGrid = (Grid) in.readObject();
+            opponentGrid = (Grid) this.in.readObject();
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(GameHost.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return opponentGrid;
     }
 
