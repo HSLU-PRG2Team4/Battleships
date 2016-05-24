@@ -30,16 +30,15 @@ public class ConnectionGUI extends JFrame implements ActionListener {
     private boolean isServer;
     private ServerSocket serverSocket = null;
     private Socket clientSocket = null;
-    private GameServer server = null;
-    private GameClient client = null;
+    private GameHost server = null;
+    private GameView gameView;
 
-    public ConnectionGUI() {
+    public ConnectionGUI(GameView gameView) {
+        this.gameView = gameView;
         initUI();
         this.setJMenuBar(createMenu());
         setVisible(true);
-        
-        GameServer server = new GameServer(4444);
-        new Thread(server).start();
+ 
     }
 
     public JMenuBar createMenu() {
