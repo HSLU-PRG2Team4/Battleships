@@ -19,6 +19,7 @@ public class GameControl {
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
         gameControl.init();  /* connectionGUI waits until connection is made */
+
         gameControl.newGame();
         
         while(!gameOver){        
