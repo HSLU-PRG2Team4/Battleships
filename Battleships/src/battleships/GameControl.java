@@ -48,19 +48,25 @@ public class GameControl {
         
    // }    
 
-    void setShip(int xCoord, int yCoord) {
+    public boolean placeShip(int xCoord, int yCoord) {
         Ship[] ships = gameModel.getOwnShips();
         OwnGrid ownGrid = gameModel.getOwnGrid();
         for(Ship ship : ships) {
             if(!ship.isPlaced()) {
                 if(xCoord + ship.getHealth() <= ownGrid.getFields().length) {
                     for(int i = 0; i < ship.getHealth(); i++) {
+                        if(ownGrid.getField(xCoord + i, yCoord).getShip() != null) {
+                            return false;
+                        }
+                    }
+                    for(int i = 0; i < ship.getHealth(); i++) {
                         ownGrid.getField(xCoord + i, yCoord).setShip(ship);                        
                     }
-                    ship.setPlaced(true);                    
+                    return true;
                 }
-                break;
+                return false;
             }
         }
+        return false;
     }
 }
