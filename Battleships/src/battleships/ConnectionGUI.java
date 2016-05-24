@@ -10,13 +10,9 @@ import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 /**
  *
@@ -24,74 +20,54 @@ import javax.swing.border.Border;
  */
 public class ConnectionGUI extends JFrame implements ActionListener {
 
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem menuItem;
-    private boolean isServer;
-    private ServerSocket serverSocket = null;
-    private Socket clientSocket = null;
-    private GameHost server = null;
+    JButton buttonServer;
+    JButton buttonClient;
+    JLabel connectionLabel;
+    JPanel panelTop;
+    JPanel panelBottom;
+
     private GameView gameView;
 
     public ConnectionGUI(GameView gameView) {
         this.gameView = gameView;
         initUI();
-        this.setJMenuBar(createMenu());
         setVisible(true);
- 
-    }
-
-    public JMenuBar createMenu() {
-        // Create MenuBar and Menu
-        menuBar = new JMenuBar();
-        menu = new JMenu("Game");
-        menuBar.add(menu);
-
-        // Add Menu Item to Menu
-        menuItem = new JMenuItem("Join existing game");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
-
-        return menuBar;
     }
 
     private void initUI() {
-        setTitle("Battleship - Initialize Connection");
-        setSize(600, 120);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Container content = getContentPane();
+        this.setTitle("Battleships - Choose Connection");
+        this.setSize(550, 150);
+        panelTop = new JPanel();
+        panelBottom = new JPanel();
 
-        JLabel waitingLabel = new JLabel("Waiting for Connection...");
-        content.add(waitingLabel);
+        // Leeres JLabel-Objekt wird erzeugt
+        connectionLabel = new JLabel("Please choose your connection");
 
-        // Set Border for progress bar
-        Border border = BorderFactory.createTitledBorder("");
-        waitingLabel.setBorder(border);
-        content.add(waitingLabel, BorderLayout.CENTER);
-    }
-    
-    public void connectToServer() {      
-            JFrame frame = new JFrame();
-            frame = new JFrame("IP-Adresse des Servers");
-            String ip = JOptionPane.showInputDialog(frame, "IP-Adresse des Servers");
-            client = new GameClient(ip, 4444);
+        //Drei Buttons werden erstellt
+        buttonServer = new JButton("Server");
+        buttonClient = new JButton("Client");
+
+        //Buttons werden dem Listener zugeordnet
+        buttonServer.addActionListener(this);
+        buttonClient.addActionListener(this);
+
+        //Buttons werden dem JPanel hinzugefügt
+        panelTop.add(buttonServer);
+        panelTop.add(buttonClient);
+
+        //JLabel wird dem Panel hinzugefügt
+        panelBottom.add(connectionLabel);
+        this.add(panelTop, BorderLayout.NORTH);
+        this.add(panelBottom, BorderLayout.SOUTH);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == menuItem) {
-            connectToServer();
+        if (e.getSource() == this.buttonServer) {
+            gameView.getGameControl().waitingForConnection();
+        } else if (e.getSource() == this.buttonClient) {
+            JFrame frame = new JFrame("IP-Adresse des Servers");
+            String ip = JOptionPane.showInputDialog(frame, "IP-Adresse des Servers");
+            gameView.getGameControl().requestConnection(ip);
         }
-    }
-
-    public static void main(String[] args) {
-
-        EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                ConnectionGUI ex = new ConnectionGUI();
-            }
-        });
     }
 }
