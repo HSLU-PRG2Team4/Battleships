@@ -18,7 +18,8 @@ public class GameView {
     
     public GameView(GameControl gameControl) {
         this.gameControl = gameControl;
-        this.startWindow = new ConnectionGUI();
+        this.startWindow = new ConnectionGUI(this);
+        
     }
     
     public void setPlayWindow(OwnGrid grid1, OpponentGrid grid2){
@@ -26,5 +27,8 @@ public class GameView {
         EventQueue.invokeLater(() -> new GameGUI(this, grid1, grid2));
     }
     
+    public GameControl getGameControl(){
+        return gameControl;
+    }
     
 }
