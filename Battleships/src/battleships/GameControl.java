@@ -20,19 +20,23 @@ public class GameControl {
         GameControl gameControl = new GameControl();
         gameControl.init();  /* connectionGUI waits until connection is made */
 
+        /* temporary test */
+        gameControl.requestShot();
+        
         gameControl.newGame();
         
         while(!gameOver){        
             if(polePosition){  /* myTurn */
-
+                /* shot */
+                
             }else{  /* opponent Turn */
-
+                /* opponent shot */
+                
             }
             polePosition = !polePosition;
         } 
         
-        /* temporary test */
-        gameControl.requestShot();
+       
         
     }
     
