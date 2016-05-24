@@ -15,8 +15,18 @@ public class OwnGrid extends Grid {
         super(width, height);
     }
     
-    public boolean addShip(Ship ship, int xCoord, int yCoord) {
-return false;      
-//  return this.getField(xCoord, yCoord).setShip(ship);
+    public boolean placeShip(Ship ship, int xCoord, int yCoord) {
+        if(xCoord + ship.getHealth() <= this.getFields().length) {
+            for(int i = 0; i < ship.getHealth(); i++) {
+                if(this.getField(xCoord + i, yCoord).getShip() != null) {
+                    return false;
+                }
+            }
+            for(int i = 0; i < ship.getHealth(); i++) {
+                this.getField(xCoord + i, yCoord).setShip(ship);                        
+            }
+            return true;
+        }
+        return false;
     }
 }
