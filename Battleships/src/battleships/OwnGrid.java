@@ -16,7 +16,7 @@ public class OwnGrid extends Grid {
     }
     
     public boolean placeShip(Ship ship, int xCoord, int yCoord) {
-        if(xCoord + ship.getHealth() < this.getFields().length) {
+        if(xCoord + ship.getHealth() <= this.getFields().length) {
             for(int i = 0; i < ship.getHealth(); i++) {
                 if(this.getField(xCoord + i, yCoord).getShip() != null) {
                     return false;

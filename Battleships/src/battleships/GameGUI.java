@@ -82,7 +82,12 @@ public class GameGUI extends JFrame {
             String[] split = coords.split(":");
             int xCoord = Integer.parseInt(split[0]);
             int yCoord = Integer.parseInt(split[1]);
-            gameView.getGameControl().placeShip(xCoord, yCoord);
+            boolean isPlaced = gameView.getGameControl().placeShip(xCoord, yCoord);
+            if(isPlaced) {
+                lblStatus.setText("Ship placed!");
+            } else {
+                lblStatus.setText("Ship not placed, try another field!");
+            }
         }
         
     }
