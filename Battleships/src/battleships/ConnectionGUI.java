@@ -9,6 +9,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -26,17 +30,24 @@ public class ConnectionGUI extends JDialog implements ActionListener {
 
     public ConnectionGUI(GameView gameView) {
         this.gameView = gameView;
-        initUI();        
+        initUI();
     }
 
     private void initUI() {
-        this.setTitle("Battleship - Choose Connection");        
-        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.setTitle("Battleship - Choose Connection");
+        this.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         this.setModal(true);
-        this.setPreferredSize(new Dimension(400,120));
+        this.setPreferredSize(new Dimension(400, 120));
         panelTop = new JPanel();
         panelBottom = new JPanel();
-        connectionLabel = new JLabel("Please choose your connection");
+       
+        try {
+            connectionLabel = new JLabel("Please choose your connection. Your "
+                    + "IP is " + Inet4Address.getLocalHost().getHostAddress());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(ConnectionGUI.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
         buttonServer = new JButton("Server");
         buttonClient = new JButton("Client");
 
@@ -46,13 +57,13 @@ public class ConnectionGUI extends JDialog implements ActionListener {
         panelTop.add(buttonServer);
         panelTop.add(buttonClient);
         panelBottom.add(connectionLabel);
-        
+
         this.add(panelTop, BorderLayout.NORTH);
         this.add(panelBottom, BorderLayout.SOUTH);
-        
+
         pack();
         setVisible(true);
-    }        
+    }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.buttonServer) {
