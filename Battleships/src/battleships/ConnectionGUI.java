@@ -35,7 +35,7 @@ public class ConnectionGUI extends JDialog implements ActionListener {
 
     private void initUI() {
         this.setTitle("Battleship - Choose Connection");
-        this.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setModal(true);
         this.setPreferredSize(new Dimension(400, 120));
         panelTop = new JPanel();
