@@ -23,12 +23,18 @@ public class GameView {
     }
     
     public void setPlayWindow(OwnGrid grid1, OpponentGrid grid2){
-        //this.playWindow = new GameGUI(grid1, grid2);
-        EventQueue.invokeLater(() -> new GameGUI(this, grid1, grid2));
+        this.playWindow = new GameGUI(this, grid1, grid2);
+        //EventQueue.invokeLater(() -> new GameGUI(this, grid1, grid2));
     }
     
     public GameControl getGameControl(){
         return gameControl;
     }
+
+    public GameGUI getPlayWindow() {
+        return playWindow;
+    }
+    
+    
     
 }
