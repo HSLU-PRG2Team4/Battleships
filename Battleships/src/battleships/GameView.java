@@ -16,12 +16,16 @@ public class GameView {
     
     public GameView(GameControl gameControl) {
         this.gameControl = gameControl;
-        this.startWindow = new ConnectionGUI();
+        this.startWindow = new ConnectionGUI(this);
+        
     }
     
     public void setPlayWindow(){
         this.playWindow = new GameGUI();
     }
     
+    public GameControl getGameControl(){
+        return gameControl;
+    }
     
 }
