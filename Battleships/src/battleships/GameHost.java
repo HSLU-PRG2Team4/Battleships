@@ -89,7 +89,6 @@ public class GameHost {
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(GameHost.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return opponentGrid;
     }
 

@@ -16,7 +16,12 @@ public class GameControl {
     
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
-        gameControl.init();
+        gameControl.init();  /* connectionGUI waits until connection is made */
+                
+        /* temporary TEST */
+        gameControl.requestShot();
+        
+        
         gameControl.newGame();
         
         /* while with shot and requestShot */
@@ -63,6 +68,7 @@ public class GameControl {
        int xCoord =  Integer.parseInt(parts[0]);
        int yCoord = Integer.parseInt(parts[1]);
        /* update OpponentGrid */
+       System.out.println(xCoord + " " + yCoord);
     }
 
     public boolean placeShip(int xCoord, int yCoord) {
