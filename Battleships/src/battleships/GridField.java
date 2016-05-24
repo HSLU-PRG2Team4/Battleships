@@ -36,6 +36,7 @@ public class GridField implements Serializable {
      */
     public void setShip(Ship ship) {
         this.ship = ship;
+        this.ship.setPlaced(true);
     }
     
     /**
