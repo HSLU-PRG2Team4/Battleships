@@ -6,22 +6,15 @@
 package battleships;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.WindowConstants;
 
 /**
@@ -45,7 +38,6 @@ public class GameGUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000, 500);
         setResizable(false);
-        setVisible(true);
         
         setLayout(new BorderLayout());
         
@@ -79,6 +71,35 @@ public class GameGUI extends JFrame {
         add(pnlPlayerTwo, BorderLayout.EAST);
         add(lblStatus, BorderLayout.SOUTH);
    
+        setVisible(true);
+        
+    }
+    
+    public void repaintBtnsPlayerOne(GridField[][] grid1){
+        
+        for(int x = 0; x < grid1.length; x++){
+            for(int y = 0; y < grid1[x].length; y++){
+                if(grid1[x][y].isShot()){
+                    if(grid1[x][y].getShip()== null){
+                        btnsPlayerOne[x][y].setBackground(Color.BLUE);
+                    }
+                    else
+                    {
+                        btnsPlayerOne[x][y].setBackground(Color.RED);
+                    }
+                }
+                else{
+                    if(grid1[x][y].getShip() == null){
+                        btnsPlayerOne[x][y].setBackground(Color.GRAY);
+                    }
+                    else
+                    {
+                        btnsPlayerOne[x][y].setBackground(Color.BLACK);
+                    }
+                    
+                }
+            }
+        }
     }
     
     private class PlayerOneAL implements ActionListener {
@@ -92,16 +113,9 @@ public class GameGUI extends JFrame {
             boolean isPlaced = gameView.getGameControl().placeShip(xCoord, yCoord);
             if(isPlaced) {
                 lblStatus.setText("Ship placed!");
-                btnsPlayerOne[xCoord][yCoord].setBackground(Color.red);
             } else {
                 lblStatus.setText("Ship not placed, try another field!");
             }
-        }
-        
-    }
-    
-    public static void main(final String[]args){
-        //EventQueue.invokeLater(() -> new GameGUI());
-    }
-    
+        }   
+    }   
 }
