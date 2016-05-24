@@ -96,12 +96,6 @@ public class GameGUI extends JFrame {
             } else {
                 lblStatus.setText("Ship not placed, try another field!");
             }
-        }
-        
-    }
-    
-    public static void main(final String[]args){
-        //EventQueue.invokeLater(() -> new GameGUI());
-    }
-    
+        }   
+    }   
 }
