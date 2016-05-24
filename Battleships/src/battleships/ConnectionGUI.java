@@ -27,6 +27,7 @@ public class ConnectionGUI extends JDialog implements ActionListener {
     public ConnectionGUI(GameView gameView) {
         this.gameView = gameView;
         initUI();        
+        
     }
 
     private void initUI() {
@@ -63,6 +64,7 @@ public class ConnectionGUI extends JDialog implements ActionListener {
             String ip = JOptionPane.showInputDialog(frame, "IP-Adresse des Servers");
             gameView.getGameControl().requestConnection(ip);
             dispose();
+            
         }
     }
 }
