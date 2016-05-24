@@ -26,14 +26,13 @@ public class ConnectionGUI extends JDialog implements ActionListener {
 
     public ConnectionGUI(GameView gameView) {
         this.gameView = gameView;
-        initUI();
-        setVisible(true);
+        initUI();        
     }
 
     private void initUI() {
         this.setTitle("Battleships - Choose Connection");
         this.setSize(550, 150);
-        this.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         panelTop = new JPanel();
         panelBottom = new JPanel();
 
@@ -56,15 +55,20 @@ public class ConnectionGUI extends JDialog implements ActionListener {
         panelBottom.add(connectionLabel);
         this.add(panelTop, BorderLayout.NORTH);
         this.add(panelBottom, BorderLayout.SOUTH);
+        
+        pack();
+        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.buttonServer) {
             gameView.getGameControl().waitForConnection();
+            dispose();
         } else if (e.getSource() == this.buttonClient) {
             JFrame frame = new JFrame("IP-Adresse des Servers");
             String ip = JOptionPane.showInputDialog(frame, "IP-Adresse des Servers");
             gameView.getGameControl().requestConnection(ip);
+            dispose();
         }
     }
 }
