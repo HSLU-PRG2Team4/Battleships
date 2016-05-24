@@ -66,22 +66,10 @@ public class GameControl {
     }
 
     public boolean placeShip(int xCoord, int yCoord) {
-        Ship[] ships = gameModel.getOwnShips();
-        OwnGrid ownGrid = gameModel.getOwnGrid();
+        Ship[] ships = this.gameModel.getOwnShips();
         for(Ship ship : ships) {
             if(!ship.isPlaced()) {
-                if(xCoord + ship.getHealth() <= ownGrid.getFields().length) {
-                    for(int i = 0; i < ship.getHealth(); i++) {
-                        if(ownGrid.getField(xCoord + i, yCoord).getShip() != null) {
-                            return false;
-                        }
-                    }
-                    for(int i = 0; i < ship.getHealth(); i++) {
-                        ownGrid.getField(xCoord + i, yCoord).setShip(ship);                        
-                    }
-                    return true;
-                }
-                return false;
+                return this.gameModel.getOwnGrid().placeShip(ship, xCoord, yCoord);
             }
         }
         return false;              
