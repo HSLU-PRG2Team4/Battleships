@@ -30,9 +30,10 @@ public class ConnectionGUI extends JDialog implements ActionListener {
     }
 
     private void initUI() {
-        this.setTitle("Battleships - Choose Connection");
-        this.setSize(550, 150);
+        this.setTitle("Choose Connection");        
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.setModal(true);
+        this.setSize(550, 150);
         panelTop = new JPanel();
         panelBottom = new JPanel();
 
@@ -58,7 +59,7 @@ public class ConnectionGUI extends JDialog implements ActionListener {
         
         pack();
         setVisible(true);
-    }
+    }        
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.buttonServer) {
