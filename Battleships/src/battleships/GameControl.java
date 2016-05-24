@@ -21,7 +21,7 @@ public class GameControl {
         gameControl.init();  /* connectionGUI waits until connection is made */
 
         /* temporary test */
-        gameControl.requestShot();
+        //gameControl.requestShot();
         
         gameControl.newGame();
         
@@ -91,7 +91,14 @@ public class GameControl {
         Ship[] ships = this.gameModel.getOwnShips();
         for(Ship ship : ships) {
             if(!ship.isPlaced()) {
-                return this.gameModel.getOwnGrid().placeShip(ship, xCoord, yCoord);
+                boolean placed = this.gameModel.getOwnGrid().placeShip(ship, xCoord, yCoord);
+                if(placed)
+                {
+                    GameGUI gui = this.gameView.getPlayWindow();
+                    GridField[][] fields = this.gameModel.getOwnGrid().getFields();
+                    gui.repaintBtnsPlayerOne(fields);  
+                }
+                return placed;
             }
         }
         return false;              
