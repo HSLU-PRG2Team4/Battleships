@@ -16,7 +16,8 @@ public class GameControl {
     
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
-        gameControl.init(); 
+        gameControl.init();
+        gameControl.newGame();
         
     }
     
@@ -24,6 +25,10 @@ public class GameControl {
         gameModel = new GameModel();
         gameView = new GameView(this);
         
+    }
+    
+    public void newGame() {
+        this.gameView.setPlayWindow(this.gameModel.getOwnGrid(), this.gameModel.getOpponentGrid());
     }
     
    // public void newGame(String IP){

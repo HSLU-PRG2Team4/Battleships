@@ -5,6 +5,8 @@
  */
 package battleships;
 
+import java.awt.EventQueue;
+
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
@@ -19,8 +21,9 @@ public class GameView {
         this.startWindow = new ConnectionGUI();
     }
     
-    public void setPlayWindow(){
-        this.playWindow = new GameGUI();
+    public void setPlayWindow(OwnGrid grid1, OpponentGrid grid2){
+        //this.playWindow = new GameGUI(grid1, grid2);
+        EventQueue.invokeLater(() -> new GameGUI(this, grid1, grid2));
     }
     
     

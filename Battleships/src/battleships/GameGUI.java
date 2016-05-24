@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,48 +27,67 @@ import javax.swing.WindowConstants;
  *
  * @author Damian
  */
-public class GameGUI extends JFrame{
+public class GameGUI extends JFrame {
+    
+    private GameView gameView;
+    private final JLabel lblStatus = new JLabel("Status");
+    private final JPanel pnlPlayerOne = new JPanel();
+    private final JPanel pnlPlayerTwo = new JPanel();
 
-    public GameGUI() throws HeadlessException {
+    public GameGUI(GameView gameView, OwnGrid grid1, OpponentGrid grid2) throws HeadlessException {
         
         super("Battleships");
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(750,500);
+        setSize(1000, 500);
         setResizable(false);
         setVisible(true);
         
         setLayout(new BorderLayout());
         
-        GridLayout grdPlayer = new GridLayout(6,6);
-        
-        JLabel lblStatus = new JLabel("Status");
-        JPanel pnlPlayerOne = new JPanel();
-        JPanel pnlPlayerTwo = new JPanel();
-        
-        add(pnlPlayerOne, BorderLayout.WEST);
-        
-        for(int i=1;i<=36;i++)
+        for(int x1 = 0; x1 < grid1.getFields().length; x1++)
         {
-            pnlPlayerOne.add(new JButton(""+i));
+            for (int y1 = 0; y1 < grid1.getFields()[x1].length; y1++)
+            {
+                JButton button1 = new JButton(x1 + ":" + y1);
+                button1.addActionListener(new PlayerOneAL());
+                pnlPlayerOne.add(button1);
+            }
         }
         
-        for(int j=1;j<=36;j++)
+        for(int x2 = 0; x2 < grid2.getFields().length; x2++)
         {
-            pnlPlayerTwo.add(new JButton(""+j));
+            for (int y2 = 0; y2 < grid2.getFields()[x2].length; y2++)
+            {
+                pnlPlayerTwo.add(new JButton(x2 + ":" + y2));
+            }
         }
         
+        GridLayout grdPlayer = new GridLayout(6,6);        
         pnlPlayerOne.setLayout(grdPlayer);
         pnlPlayerTwo.setLayout(grdPlayer);
-        
+                
         add(pnlPlayerOne, BorderLayout.WEST);
         add(pnlPlayerTwo, BorderLayout.EAST);
         add(lblStatus, BorderLayout.SOUTH);
    
     }
     
+    private class PlayerOneAL implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String coords = e.getActionCommand();
+            String[] split = coords.split(":");
+            int xCoord = Integer.parseInt(split[0]);
+            int yCoord = Integer.parseInt(split[1]);
+            gameView
+        }
+        
+    }
+    
     public static void main(final String[]args){
-        EventQueue.invokeLater(() -> new GameGUI());
+        //EventQueue.invokeLater(() -> new GameGUI());
     }
     
 }
