@@ -13,18 +13,25 @@ public class GameControl {
     private GameModel gameModel;
     private GameView gameView;
     private GameHost gameHost;
+    private boolean polePosition = false; /* whos turn is it? true -> myTurn */
+    private boolean gameOver = false;
     
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
         gameControl.init();  /* connectionGUI waits until connection is made */
-                
-        /* temporary TEST */
-        gameControl.requestShot();
-        
-        
         gameControl.newGame();
         
-        /* while with shot and requestShot */
+        while(!gameOver){        
+            if(polePosition){  /* myTurn */
+
+            }else{  /* opponent Turn */
+
+            }
+            polePosition = !polePosition;
+        } 
+        
+        /* temporary test */
+        gameControl.requestShot();
         
     }
     
@@ -33,6 +40,10 @@ public class GameControl {
         gameView = new GameView(this);
         gameHost = new GameHost(this);
     }
+    
+    public void setPolePosition(boolean pole){
+        this.polePosition = pole;
+    };
     
     /* when player A waits for invitation (called by ConnectionGUI) */
     public void waitForConnection(){
