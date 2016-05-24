@@ -81,7 +81,7 @@ public class GameGUI extends JFrame {
             String[] split = coords.split(":");
             int xCoord = Integer.parseInt(split[0]);
             int yCoord = Integer.parseInt(split[1]);
-            gameView
+            gameView.getGameControl().placeShip(xCoord, yCoord);
         }
         
     }

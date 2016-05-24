@@ -33,15 +33,10 @@ public class GridField implements Serializable {
      * Set the value of ship
      *
      * @param ship new value of ship
-     * @return boolean true if ship is successfully placed or false if there already is one
      */
-    public boolean setShip(Ship ship) {
-        if(this.ship == null) {
-            this.ship = ship;
-            return true;
-        } else {
-            return false;
-        }
+    public void setShip(Ship ship) {
+        this.ship = ship;
+        this.ship.setPlaced(true);
     }
     
     /**
