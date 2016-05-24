@@ -14,7 +14,7 @@ import javax.swing.*;
  *
  * @author Rafael
  */
-public class ConnectionGUI extends JFrame implements ActionListener {
+public class ConnectionGUI extends JDialog implements ActionListener {
 
     JButton buttonServer;
     JButton buttonClient;
@@ -33,6 +33,7 @@ public class ConnectionGUI extends JFrame implements ActionListener {
     private void initUI() {
         this.setTitle("Battleships - Choose Connection");
         this.setSize(550, 150);
+        this.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         panelTop = new JPanel();
         panelBottom = new JPanel();
 
