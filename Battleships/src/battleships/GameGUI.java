@@ -37,6 +37,7 @@ public class GameGUI extends JFrame {
     public GameGUI(GameView gameView, OwnGrid grid1, OpponentGrid grid2) throws HeadlessException {
         
         super("Battleships");
+        this.gameView = gameView;
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000, 500);
