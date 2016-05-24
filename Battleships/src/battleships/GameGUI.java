@@ -33,6 +33,8 @@ public class GameGUI extends JFrame {
     private final JLabel lblStatus = new JLabel("Status");
     private final JPanel pnlPlayerOne = new JPanel();
     private final JPanel pnlPlayerTwo = new JPanel();
+    private final JButton[][] btnsPlayerOne;
+    private final JButton[][] btnsPlayerTwo;
 
     public GameGUI(GameView gameView, OwnGrid grid1, OpponentGrid grid2) throws HeadlessException {
         
@@ -46,21 +48,25 @@ public class GameGUI extends JFrame {
         
         setLayout(new BorderLayout());
         
+        this.btnsPlayerOne = new JButton[grid1.getFields().length][grid1.getFields()[0].length];
         for(int x1 = 0; x1 < grid1.getFields().length; x1++)
         {
             for (int y1 = 0; y1 < grid1.getFields()[x1].length; y1++)
             {
-                JButton button1 = new JButton(x1 + ":" + y1);
-                button1.addActionListener(new PlayerOneAL());
-                pnlPlayerOne.add(button1);
+                this.btnsPlayerOne[x1][y1] = new JButton(x1 + ":" + y1);
+                this.btnsPlayerOne[x1][y1].addActionListener(new PlayerOneAL());
+                pnlPlayerOne.add(this.btnsPlayerOne[x1][y1]);
             }
         }
         
+        this.btnsPlayerTwo = new JButton[grid2.getFields().length][grid2.getFields()[0].length];
         for(int x2 = 0; x2 < grid2.getFields().length; x2++)
         {
             for (int y2 = 0; y2 < grid2.getFields()[x2].length; y2++)
             {
-                pnlPlayerTwo.add(new JButton(x2 + ":" + y2));
+                this.btnsPlayerTwo[x2][y2] = new JButton(x2 + ":" + y2);
+                this.btnsPlayerTwo[x2][y2].addActionListener(new PlayerOneAL());
+                pnlPlayerTwo.add(this.btnsPlayerTwo[x2][y2]);
             }
         }
         
