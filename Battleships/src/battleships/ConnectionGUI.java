@@ -14,7 +14,7 @@ import javax.swing.*;
  *
  * @author Rafael
  */
-public class ConnectionGUI extends JFrame implements ActionListener {
+public class ConnectionGUI extends JDialog implements ActionListener {
 
     JButton buttonServer;
     JButton buttonClient;
