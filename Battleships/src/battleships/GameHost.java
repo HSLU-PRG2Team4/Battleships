@@ -31,7 +31,7 @@ public class GameHost {
     }
 
     public void waiting() {
-        gameControl.setPolePosition(true); /* defined that waiting Player has pole */
+        gameControl.setPolePosition(true); /* defined that waiting Player has first turn */
         try {
             this.serverSocket = new ServerSocket(4444);
             this.clientSocket = serverSocket.accept();
@@ -45,7 +45,7 @@ public class GameHost {
     }
 
     public void connect(String ip) {
-       gameControl.setPolePosition(true); /* defined that waiting Player has pole */
+       gameControl.setPolePosition(false); /* defined has not first turn */
         try {
             this.clientSocket = new Socket(ip, 4444);
             this.out = new ObjectOutputStream(clientSocket.getOutputStream());
