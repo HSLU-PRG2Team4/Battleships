@@ -17,6 +17,11 @@ public abstract class Grid implements Serializable {
 
     public Grid(int width, int height) {
         fields = new GridField[height][width];
+        for(int x = 0; x < height; x++) {
+            for(int y = 0; y < width; y++) {
+                fields[x][y] = new GridField();
+            }
+        }
     }
     
     /**
