@@ -47,4 +47,20 @@ public class GameControl {
    //     connection = new Opponent(IP);    
         
    // }    
+
+    void setShip(int xCoord, int yCoord) {
+        Ship[] ships = gameModel.getOwnShips();
+        OwnGrid ownGrid = gameModel.getOwnGrid();
+        for(Ship ship : ships) {
+            if(!ship.isPlaced()) {
+                if(xCoord + ship.getHealth() <= ownGrid.getFields().length) {
+                    for(int i = 0; i < ship.getHealth(); i++) {
+                        ownGrid.getField(xCoord + i, yCoord).setShip(ship);                        
+                    }
+                    ship.setPlaced(true);                    
+                }
+                break;
+            }
+        }
+    }
 }
