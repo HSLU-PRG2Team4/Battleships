@@ -20,9 +20,9 @@ public class GameModel {
         this.opponentGrid = new OpponentGrid(6, 6);
         
         this.ownShips = new Ship[3];
-        this.ownShips[0] = new Ship(1, "Gumelboot");
+        this.ownShips[0] = new Ship(3, "Kreuzer");
         this.ownShips[1] = new Ship(2, "Zerstörer");
-        this.ownShips[2] = new Ship(3, "Kreuzer");
+        this.ownShips[2] = new Ship(1, "Gumelboot");
     }
     
     /**
@@ -61,4 +61,11 @@ public class GameModel {
         this.opponentGrid = opponentGrid;
     }
 
+    /**
+     * Get the value of ownShips
+     * @return the value of ownShips
+     */
+    public Ship[] getOwnShips() {
+        return ownShips;
+    }
 }
