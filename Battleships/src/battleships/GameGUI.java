@@ -7,6 +7,7 @@ package battleships;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
@@ -91,6 +92,7 @@ public class GameGUI extends JFrame {
             boolean isPlaced = gameView.getGameControl().placeShip(xCoord, yCoord);
             if(isPlaced) {
                 lblStatus.setText("Ship placed!");
+                btnsPlayerOne[xCoord][yCoord].setBackground(Color.red);
             } else {
                 lblStatus.setText("Ship not placed, try another field!");
             }
