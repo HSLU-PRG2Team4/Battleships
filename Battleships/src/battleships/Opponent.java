@@ -12,9 +12,16 @@ import java.net.Socket;
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
  */
 public class Opponent {
-    private Socket clientSocket;
+   private GameControl gameControl;
+   private Socket clientSocket;
+   private GameHost gameHost;
+   
+    public Opponent(GameControl gameControl){
+        this.gameControl = gameControl;
+        this.gameHost = new GameHost();
+    }
     
-    public Opponent(Socket clientSocket){
-        this.clientSocket = clientSocket;
+    public GameHost getGameHost(){
+        return gameHost;
     }
 }
