@@ -123,20 +123,22 @@ public class GameControl {
     
     public boolean placeShip(int xCoord, int yCoord) {
         Ship[] ships = this.gameModel.getOwnShips();
-        for(Ship ship : ships) {
-            if(!ship.isPlaced()) {
-                boolean placed = this.gameModel.getOwnGrid().placeShip(ship, xCoord, yCoord);
+        for(int i = 0; i < ships.length; i++) {
+            if(!ships[i].isPlaced()) {
+                boolean placed = this.gameModel.getOwnGrid().placeShip(ships[i], xCoord, yCoord);
                 if(placed)
                 {
                     GameGUI gui = this.gameView.getPlayWindow();
                     GridField[][] fields = this.gameModel.getOwnGrid().getFields();
                     gui.repaintBtnsPlayerOne(fields);
+                    if(i == ships.length - 1) {
+                        this.shipsPlaced = true;
+                        this.runGame();
+                    }
                 }
                 return placed;
             }
         }
-        this.shipsPlaced = true;
-        this.runGame();
         return false;        
     }
 }
