@@ -15,9 +15,9 @@ public class GameControl {
     private  GameModel gameModel;
     private  GameView gameView;
     private  GameHost gameHost;
-    private static boolean shipsPlaced = false;
-    private static boolean polePosition = false; /* whos turn is it? true -> myTurn */
-    private static boolean gameOver = false;
+    private boolean shipsPlaced = false;
+    private boolean myTurn = false; /* whos turn is it? */
+    private boolean gameOver = false;
     
     public static void main(String args[]){
         GameControl gameControl = new GameControl();
@@ -33,9 +33,17 @@ public class GameControl {
        
     }
     
-    public void setPolePosition(boolean pole){
-        this.polePosition = pole;
-    };
+    public void setMyTurn(boolean pole){
+        this.myTurn = pole;
+    }
+    
+    public boolean getMyTurn() {
+        return this.myTurn;
+    }
+    
+    public boolean getShipsPlaced() {
+        return this.shipsPlaced;
+    }
     
     /* when player A waits for invitation (called by ConnectionGUI) */
     public void waitForConnection(){
@@ -57,7 +65,7 @@ public class GameControl {
     }
     
     /* send coords from ownGrid to opponent */
-    public void shot(int xCoord, int yCoord) {     
+    public void sendShot(int xCoord, int yCoord) {     
        String coordinates = xCoord + ";" + yCoord;
        gameHost.sendShot(coordinates);  
     }
@@ -70,8 +78,8 @@ public class GameControl {
        int xCoord =  Integer.parseInt(parts[0]);
        int yCoord = Integer.parseInt(parts[1]);
        
-       /* update OpponentGrid */
-       boolean hit = this.gameModel.getOpponentGrid().getField(xCoord, yCoord).shot(); 
+       /* update OwnGrid */
+       boolean hit = this.gameModel.getOwnGrid().getField(xCoord, yCoord).shot(); 
        
        System.out.println(xCoord + " " + yCoord);
        return hit;
@@ -81,16 +89,19 @@ public class GameControl {
         /* exchange Grids */
         gameHost.sendGridField(gameModel.getOwnGrid().getFields());
         gameModel.getOpponentGrid().setFields(gameHost.receiveGridField());
+        if(!this.myTurn) {
+            this.opponentTurn();
+        }
     }
     
-    public void myTurn(int xCoord, int yCoord){
-        /* set shot to OwnGrid */
-        boolean hit = this.gameModel.getOwnGrid().getField(xCoord, yCoord).shot();  
+    public boolean myTurn(int xCoord, int yCoord){
+        /* set shot to OpponentGrid */
+        boolean hit = this.gameModel.getOpponentGrid().getField(xCoord, yCoord).shot();  
 
-        if(!hit){ /* when shot hit ship myTurn again */
-            polePosition = !polePosition;
-        }
-        this.shot(xCoord, yCoord);                   
+        /* when shot hit ship myTurn again */
+        myTurn = hit;
+        this.sendShot(xCoord, yCoord); 
+        return hit;
     }
     
     public void opponentTurn(){
@@ -98,9 +109,8 @@ public class GameControl {
 
         /* update GameView */
 
-        if(!hit){ /* when shot hit ship hisTurn again */
-            polePosition = !polePosition;
-        }        
+        /* when shot hit ship hisTurn again */
+        myTurn = !hit;       
     }
     
     public boolean placeShip(int xCoord, int yCoord) {
@@ -112,11 +122,12 @@ public class GameControl {
                 {
                     GameGUI gui = this.gameView.getPlayWindow();
                     GridField[][] fields = this.gameModel.getOwnGrid().getFields();
-                    gui.repaintBtnsPlayerOne(fields);  
+                    gui.repaintBtnsPlayerOne(fields);
                 }
                 return placed;
             }
         }
+        this.shipsPlaced = true;
         this.runGame();
         return false;        
     }

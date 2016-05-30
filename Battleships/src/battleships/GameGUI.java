@@ -58,7 +58,7 @@ public class GameGUI extends JFrame {
             for (int y2 = 0; y2 < grid2.getFields()[x2].length; y2++)
             {
                 this.btnsPlayerTwo[x2][y2] = new JButton(x2 + ":" + y2);
-                this.btnsPlayerTwo[x2][y2].addActionListener(new PlayerOneAL());
+                this.btnsPlayerTwo[x2][y2].addActionListener(new PlayerTwoAL());
                 pnlPlayerTwo.add(this.btnsPlayerTwo[x2][y2]);
             }
         }
@@ -106,16 +106,46 @@ public class GameGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String coords = e.getActionCommand();
-            String[] split = coords.split(":");
-            int xCoord = Integer.parseInt(split[0]);
-            int yCoord = Integer.parseInt(split[1]);
-            boolean isPlaced = gameView.getGameControl().placeShip(xCoord, yCoord);
-            if(isPlaced) {
-                lblStatus.setText("Ship placed!");
+            if(gameView.getGameControl().getShipsPlaced()) {
+                lblStatus.setText("Ships already placed. Y U DO DIS!?");
             } else {
-                lblStatus.setText("Ship not placed, try another field!");
+                String coords = e.getActionCommand();
+                String[] split = coords.split(":");
+                int xCoord = Integer.parseInt(split[0]);
+                int yCoord = Integer.parseInt(split[1]);
+                boolean isPlaced = gameView.getGameControl().placeShip(xCoord, yCoord);
+                if(isPlaced) {
+                    lblStatus.setText("Ship placed!");
+                } else {
+                    if(gameView.getGameControl().getShipsPlaced()) {
+                        lblStatus.setText("Ships placed. Reddy tu römbel!");
+                    } else {
+                        lblStatus.setText("Ship not placed, try another field!");                    
+                    }
+                }                
             }
         }   
     }   
+
+    private class PlayerTwoAL implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(gameView.getGameControl().getShipsPlaced() && gameView.getGameControl().getMyTurn()) {
+                String coords = e.getActionCommand();
+                String[] split = coords.split(":");
+                int xCoord = Integer.parseInt(split[0]);
+                int yCoord = Integer.parseInt(split[1]);
+                boolean isHit = gameView.getGameControl().myTurn(xCoord, yCoord);
+                if(isHit) {
+                    lblStatus.setText("Hit!");
+                } else {
+                    lblStatus.setText("Miss!");
+                }                
+            } else {
+                lblStatus.setText("Not your turn now. Y U DO DIS!?");
+            }
+        }
+    }
+
 }
