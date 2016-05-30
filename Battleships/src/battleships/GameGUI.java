@@ -102,6 +102,26 @@ public class GameGUI extends JFrame {
         }
     }
     
+    public void repaintBtnsPlayerTwo(GridField[][] grid1){
+        
+        for(int x = 0; x < grid1.length; x++){
+            for(int y = 0; y < grid1[x].length; y++){
+                if(grid1[x][y].isShot()){
+                    if(grid1[x][y].getShip()== null){
+                        btnsPlayerTwo[x][y].setBackground(Color.BLUE);
+                    }
+                    else
+                    {
+                        btnsPlayerTwo[x][y].setBackground(Color.RED);
+                    }
+                }
+                else{
+                    btnsPlayerTwo[x][y].setBackground(Color.GRAY);
+                }
+            }
+        }
+    }
+ 
     private class PlayerOneAL implements ActionListener {
 
         @Override
@@ -141,7 +161,7 @@ public class GameGUI extends JFrame {
                     lblStatus.setText("Hit!");
                 } else {
                     lblStatus.setText("Miss!");
-                }                
+                }
             } else {
                 lblStatus.setText("Not your turn now. Y U DO DIS!?");
             }

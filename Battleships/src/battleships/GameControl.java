@@ -100,7 +100,12 @@ public class GameControl {
 
         /* when shot hit ship myTurn again */
         myTurn = hit;
-        this.sendShot(xCoord, yCoord); 
+        this.sendShot(xCoord, yCoord);
+
+        GameGUI gui = this.gameView.getPlayWindow();
+        GridField[][] fields = this.gameModel.getOwnGrid().getFields();
+        gui.repaintBtnsPlayerTwo(fields);
+
         return hit;
     }
     
@@ -108,6 +113,9 @@ public class GameControl {
         boolean hit = this.requestShot();  
 
         /* update GameView */
+        GameGUI gui = this.gameView.getPlayWindow();
+        GridField[][] fields = this.gameModel.getOwnGrid().getFields();
+        gui.repaintBtnsPlayerOne(fields);
 
         /* when shot hit ship hisTurn again */
         myTurn = !hit;       
