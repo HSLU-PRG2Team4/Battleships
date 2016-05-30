@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public abstract class Grid implements Serializable {
 
-    private final GridField[][] fields;
+    private GridField[][] fields;
 
     public Grid(int width, int height) {
         fields = new GridField[height][width];
@@ -31,6 +31,14 @@ public abstract class Grid implements Serializable {
      */
     public GridField[][] getFields() {
         return fields;
+    }
+    
+    /**
+     * Sert the value of fields
+     * @param fields new 2-dimensional Array of GridFields
+     */
+    public void setFields(GridField[][] fields) {
+        this.fields = fields;
     }
     
     /**
