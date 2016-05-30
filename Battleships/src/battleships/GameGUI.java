@@ -79,12 +79,12 @@ public class GameGUI extends JFrame {
         
     }
     
-    public void repaintBtnsPlayerOne(GridField[][] grid1){
+    public void repaintBtnsPlayerOne(GridField[][] grid){
         
-        for(int x = 0; x < grid1.length; x++){
-            for(int y = 0; y < grid1[x].length; y++){
-                if(grid1[x][y].isShot()){
-                    if(grid1[x][y].getShip()== null){
+        for(int x = 0; x < grid.length; x++){
+            for(int y = 0; y < grid[x].length; y++){
+                if(grid[x][y].isShot()){
+                    if(grid[x][y].getShip()== null){
                         btnsPlayerOne[x][y].setBackground(Color.BLUE);
                     }
                     else
@@ -93,7 +93,7 @@ public class GameGUI extends JFrame {
                     }
                 }
                 else{
-                    if(grid1[x][y].getShip() == null){
+                    if(grid[x][y].getShip() == null){
                         btnsPlayerOne[x][y].setBackground(Color.GRAY);
                     }
                     else
@@ -106,12 +106,12 @@ public class GameGUI extends JFrame {
         }
     }
     
-    public void repaintBtnsPlayerTwo(GridField[][] grid1){
+    public void repaintBtnsPlayerTwo(GridField[][] grid){
         
-        for(int x = 0; x < grid1.length; x++){
-            for(int y = 0; y < grid1[x].length; y++){
-                if(grid1[x][y].isShot()){
-                    if(grid1[x][y].getShip()== null){
+        for(int x = 0; x < grid.length; x++){
+            for(int y = 0; y < grid[x].length; y++){
+                if(grid[x][y].isShot()){
+                    if(grid[x][y].getShip()== null){
                         btnsPlayerTwo[x][y].setBackground(Color.BLUE);
                     }
                     else

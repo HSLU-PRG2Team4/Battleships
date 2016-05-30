@@ -66,7 +66,7 @@ public class GameControl {
     
     /* send coords from ownGrid to opponent */
     public void sendShot(int xCoord, int yCoord) {     
-       String coordinates = xCoord + ";" + yCoord;
+       String coordinates = xCoord + ":" + yCoord;
        gameHost.sendShot(coordinates);  
     }
     
@@ -74,14 +74,13 @@ public class GameControl {
        String coords = gameHost.receiveShot();
        
        /* string coord split to integers */
-       String[] parts = coords.split(";");
+       String[] parts = coords.split(":");
        int xCoord =  Integer.parseInt(parts[0]);
        int yCoord = Integer.parseInt(parts[1]);
        
        /* update OwnGrid */
        boolean hit = this.gameModel.getOwnGrid().getField(xCoord, yCoord).shot(); 
        
-       System.out.println(xCoord + " " + yCoord);
        return hit;
     }
 
@@ -103,7 +102,7 @@ public class GameControl {
         this.sendShot(xCoord, yCoord);
 
         GameGUI gui = this.gameView.getPlayWindow();
-        GridField[][] fields = this.gameModel.getOwnGrid().getFields();
+        GridField[][] fields = this.gameModel.getOpponentGrid().getFields();
         gui.repaintBtnsPlayerTwo(fields);
 
         return hit;
