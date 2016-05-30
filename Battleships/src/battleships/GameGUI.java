@@ -48,6 +48,8 @@ public class GameGUI extends JFrame {
             {
                 this.btnsPlayerOne[x1][y1] = new JButton(x1 + ":" + y1);
                 this.btnsPlayerOne[x1][y1].addActionListener(new PlayerOneAL());
+                this.btnsPlayerOne[x1][y1].setBackground(Color.GRAY);
+                this.btnsPlayerOne[x1][y1].setOpaque(true);
                 pnlPlayerOne.add(this.btnsPlayerOne[x1][y1]);
             }
         }
@@ -59,6 +61,8 @@ public class GameGUI extends JFrame {
             {
                 this.btnsPlayerTwo[x2][y2] = new JButton(x2 + ":" + y2);
                 this.btnsPlayerTwo[x2][y2].addActionListener(new PlayerTwoAL());
+                this.btnsPlayerTwo[x2][y2].setBackground(Color.GRAY);
+                this.btnsPlayerTwo[x2][y2].setOpaque(true);
                 pnlPlayerTwo.add(this.btnsPlayerTwo[x2][y2]);
             }
         }
@@ -135,7 +139,11 @@ public class GameGUI extends JFrame {
                 int yCoord = Integer.parseInt(split[1]);
                 boolean isPlaced = gameView.getGameControl().placeShip(xCoord, yCoord);
                 if(isPlaced) {
-                    lblStatus.setText("Ship placed!");
+                    if(gameView.getGameControl().getShipsPlaced()) {
+                        lblStatus.setText("Ships placed. Reddy tu römbel!");
+                    } else {
+                        lblStatus.setText("Ship placed, more to go!");                    
+                    }
                 } else {
                     if(gameView.getGameControl().getShipsPlaced()) {
                         lblStatus.setText("Ships placed. Reddy tu römbel!");
