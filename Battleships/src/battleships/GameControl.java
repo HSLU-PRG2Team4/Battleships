@@ -5,6 +5,8 @@
  */
 package battleships;
 
+import java.util.HashSet;
+
 /**
  *
  * @author Rafael Stalder, Damian Schilter, Lucas Schnüriger, Dominik Zgraggen
@@ -77,8 +79,8 @@ public class GameControl {
 
     public void runGame(){       
         /* exchange Grids */
-        gameHost.sendGrid(gameModel.getOwnGrid());
-        gameHost.receiveGrid();        
+        gameHost.sendGridField(gameModel.getOwnGrid().getFields());
+        gameModel.getOpponentGrid().setFields(gameHost.receiveGridField());
     }
     
     public void myTurn(int xCoord, int yCoord){
