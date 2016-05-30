@@ -65,9 +65,9 @@ public class GameHost {
         }
     }
 
-    public void sendGrid(Grid grid) {
+    public void sendGridField(GridField[][] gridfield) {
         try {
-            this.out.writeObject(grid);
+            this.out.writeObject(gridfield);
         } catch (IOException ex) {
             Logger.getLogger(GameHost.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,14 +84,14 @@ public class GameHost {
         return coordinates;
     }
 
-    public Grid receiveGrid() {
-        Grid opponentGrid = null;
+    public GridField[][] receiveGridField() {
+        GridField[][] gridField = null;
         try {
-            opponentGrid = (Grid) this.in.readObject();
+            gridField = (GridField[][]) this.in.readObject();
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(GameHost.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return opponentGrid;
+        return gridField;
     }
 
 }
