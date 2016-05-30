@@ -105,6 +105,9 @@ public class GameControl {
         GridField[][] fields = this.gameModel.getOpponentGrid().getFields();
         gui.repaintBtnsPlayerTwo(fields);
 
+        if(!myTurn) {
+            this.opponentTurn();
+        }
         return hit;
     }
     
@@ -117,7 +120,10 @@ public class GameControl {
         gui.repaintBtnsPlayerOne(fields);
 
         /* when shot hit ship hisTurn again */
-        myTurn = !hit;       
+        myTurn = !hit;
+        if(!myTurn) {
+            this.opponentTurn();
+        }
     }
     
     public boolean placeShip(int xCoord, int yCoord) {
